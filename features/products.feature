@@ -1,13 +1,16 @@
 Feature: Products
 	Background:
 		Given the following user:
-			| name | user |
+			| name                  | user               |
+		        | email                 | dan@dadtildave.com |
+		        | password              | pass               |
+			| password_confirmation | pass               |
 		And that user is logged in.
 
 	Scenario: create new product
 		Given I am on the products index page.
 		When I follow "New Product"
-		And I enter the following:
+		And I fill in the following:
 			| product_name        | sausage                  |
 			| product_description | Delicious Datil Sausages |
 			| product_price       | 1.2                      |
