@@ -1,4 +1,10 @@
 Datildave::Application.routes.draw do
+  get "products/new"
+
+  get "products/edit"
+
+  get "products/delete"
+
   get "sessions/create"
 
   get "sessions/destroy"
