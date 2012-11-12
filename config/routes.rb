@@ -19,6 +19,7 @@ Datildave::Application.routes.draw do
 
   resources :sessions
   resources :users
+  resources :products
 
   root :to => 'home#index'
 

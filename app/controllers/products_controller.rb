@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  expose(:products)
+  expose(:product)
+
   def new
   end
 
