@@ -1,10 +1,11 @@
 %h1 Products
+.user_nav
+  = link_to "New Product", new_product_path  
 
 .products
   %ul
-    = products.each do |product|
+    - products.each do |product|
       %li= product.name
-
-  - if current_user
-    = link_to "New Product", new_product_path
+      - if current_user
+        = link_to "Edit", edit_product_path(product)
 
