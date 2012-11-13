@@ -15,6 +15,10 @@ Given /^I am on that product's page\.$/ do
   visit product_path(@product)
 end
 
+Given /^I am on that page\.$/ do
+  visit "/#{@page.name}/"
+end
+
 Given /^I am on the home page\.$/ do
   visit root_path
 end
