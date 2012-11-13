@@ -10,7 +10,7 @@ class PagesController < ApplicationController
 
   def create
     if new_page.save
-      redirect_to slug_path(new_page.slug)
+      redirect_to slug_path(new_page.slug), notice: "Page successfully created."
     else
       render 'new'
     end
@@ -18,7 +18,7 @@ class PagesController < ApplicationController
 
   def update
     if page.save
-      redirect_to slug_path(page.slug)
+      redirect_to slug_path(page.slug), notice: "Page successfully updated."
     else
       render 'edit'
     end
@@ -26,7 +26,7 @@ class PagesController < ApplicationController
 
   def destroy
     page.destroy
-    redirect_to :root, message: "#{page.name} was deleted."
+    redirect_to :root, notice: "Page successfully deleted."
   end
 
 end
