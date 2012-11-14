@@ -1,4 +1,6 @@
 Datildave::Application.routes.draw do
+  get "contact/new"
+
   get "products/new"
 
   get "products/edit"
