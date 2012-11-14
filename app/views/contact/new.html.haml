@@ -1,2 +1,26 @@
-%h1 Contact#new
-%p Find me in app/views/contact/new.html.haml
+%h1 Contact Datil Dave
+
+.form
+  = form_for @message, :url => contact_path do |f|
+    .field
+      = f.label :name
+      %br
+      = f.text_field :name
+
+    .field
+      = f.label :email
+      %br
+      = f.text_field :email
+
+    .field
+      = f.label :subject
+      %br
+      = f.text_field :subject
+
+    .field
+      = f.label :body
+      %br
+      = f.text_area :body
+
+    .action
+      = f.submit "Send"
