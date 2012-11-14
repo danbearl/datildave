@@ -1,3 +1,4 @@
+@javascript
 Feature: Products
 	Background:
 		Given the following user:

@@ -4,7 +4,7 @@
   - if current_user
     = link_to "Edit", edit_product_path(product)
     |
-    = link_to "Delete", product, confirm: "Deleting is irreversible. Do you wish to continue?", method: :delete
+    = link_to "Delete", product, method: :delete
 
 .main
   %p
