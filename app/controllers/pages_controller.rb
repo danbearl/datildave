@@ -4,10 +4,6 @@ class PagesController < ApplicationController
   expose(:page, finder: :find_by_slug, finder_parameter: :slug)
   expose(:new_page, model: Page)
 
-  # Move this to the ApplicationController if you want to have
-  # the navigation in your Application Layout
-  expose(:page_slugs ) { Page.select(:slug).map(&:slug) }
-
   def create
     if new_page.save
       redirect_to slug_path(new_page.slug), notice: "Page successfully created."
