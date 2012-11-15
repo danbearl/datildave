@@ -1,4 +1,4 @@
-class Message < ActiveRecord::Base
+class Message
   
   include ActiveModel::Validations
   include ActiveModel::Conversion

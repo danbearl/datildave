@@ -58,5 +58,18 @@ module Datildave
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+  ActionMailer::Base.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :domain => "datildave.com",
+    :user_name => "dan@datildave.com",
+    :password => "Lmb+Dmb=123"
+  }
+
+  config.action_mailer.default_url_options = {
+    :host => "datildave.com"
+  }
   end
 end

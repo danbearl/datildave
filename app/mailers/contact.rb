@@ -1,6 +1,6 @@
 class Contact < ActionMailer::Base
-  default from: "contact@datildave.com"
-  default to: "dan.bearl@gmail.com"
+  default from: "dan@datildave.com"
+  default to: "dan@datildave.com"
 
   def new_message(message)
     @message = message
