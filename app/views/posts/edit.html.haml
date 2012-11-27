@@ -1,0 +1,6 @@
+- if current_user
+  %h1= "Editing #{post.title}"
+  = form_for post, builder: Formal::Builder do |f|
+    = render partial: "form", locals: {f:f}
+- else
+  = "You must be logged in to use this action."

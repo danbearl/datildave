@@ -1,5 +1,11 @@
 Datildave::Application.routes.draw do
   
+  get "posts/index"
+
+  get "posts/new"
+
+  get "posts/edit"
+
   get "log_in" => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
   match "contact" => "contact#new", :as => "contact", :via => :get
@@ -11,6 +17,7 @@ Datildave::Application.routes.draw do
   resources :products
   resources :contacts
   resources :pages, only: [:new, :create]
+  resources :posts
 
   #keep these at the bottom of your file. They should be the last routes.
   get "/:slug", to: "pages#show", as: :slug

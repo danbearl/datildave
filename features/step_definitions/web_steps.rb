@@ -1,3 +1,11 @@
+Given /^I am on the contact page\.$/ do
+  visit "/contact/"
+end
+
+Given /^I am on the posts index page\.$/ do
+  visit posts_path
+end
+
 Given /^that user is logged in\.$/ do
   visit "/log_in/"
 

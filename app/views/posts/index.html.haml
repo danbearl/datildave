@@ -1,0 +1,13 @@
+- if current_user
+  = link_to "New Post", new_post_path
+  
+.posts
+  - posts.each do |post|
+    .post
+      %h2= post.title
+      %p.time= post.created_at.to_s(:us)
+      %p.body= post.body
+      - if current_user
+        = link_to "Edit Post", edit_post_path(post)
+        |
+        = link_to "Delete Post", post, confirm: "Deleting is irreversible. Do you wish to continue?", method: :delete
