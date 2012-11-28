@@ -25,11 +25,12 @@ Feature: Posts
 		When I follow "Edit Post"
 		And I fill in the following:
 			| post_body | This is the updated body. |
+		And I press "Update Post"
 		Then I should see "Post successfully updated."
 		And I should see "This is the updated body."
 
 	Scenario: Destroy post
 		When I follow "Delete Post"
-		Then I should see "Post successfully deleted."
+		Then I should see "Post successfully destroyed."
 		And I should not see "First Post"
 
