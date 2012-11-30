@@ -11,4 +11,4 @@
       - if current_user
         = link_to "Edit Post", edit_post_path(post)
         |
-        = link_to "Delete Post", post, method: :delete
+        = link_to "Delete Post", post, confirm: "Deleting is irreversible. Do you wish to continue?", method: :delete

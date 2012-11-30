@@ -1,1 +1,16 @@
-%h1 Datil Dave's Products Coming Soon
+#header
+  #logo
+
+  #page_title
+    %h1 Datil Dave's Pepper Products
+  #nav
+    %ul
+      %li= link_to "Home", root_path
+      %li= link_to "Products", products_path
+      = pages.each do |page|
+        %li= link_to page.name, page
+      %li= link_to "Contact", "/contact/"
+
+#main
+
+#footer

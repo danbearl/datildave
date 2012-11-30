@@ -31,6 +31,7 @@ Feature: Posts
 
 	Scenario: Destroy post
 		When I follow "Delete Post"
+		And I accept the confirmation.
 		Then I should see "Post successfully destroyed."
 		And I should not see "First Post"
 
