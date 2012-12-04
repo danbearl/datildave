@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'aws-s3'
 gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'bootstrap-sass'
 gem 'buildybuild'
 gem 'carrierwave'
 gem 'decent_exposure'
