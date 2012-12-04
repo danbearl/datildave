@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'aws-s3'
 gem 'bcrypt-ruby', :require => 'bcrypt'
-gem 'bootstrap-sass'
 gem 'buildybuild'
 gem 'carrierwave'
 gem 'decent_exposure'
@@ -17,6 +16,7 @@ gem 'rmagick'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'bootstrap-sass'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
