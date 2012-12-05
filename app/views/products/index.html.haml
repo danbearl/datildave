@@ -1,11 +1,15 @@
-%h1 Products
-.user_nav
-  = link_to "New Product", new_product_path  
-
-.products
-  %ul
-    - products.each do |product|
-      %li= product.name
+.row
+  .span12
+    .page-header
+      %h1 Products
+      -if current_user
+        = link_to "New Product", new_product_path
+.row
+  - products.each do |product|
+    .span3.product
+      = link_to product.name, product
       - if current_user
         = link_to "Edit", edit_product_path(product)
+        |
+        = link_to "Delete", product, confirm: "Deleting is irreversible. Do you wish to continue?", method: :delete
 

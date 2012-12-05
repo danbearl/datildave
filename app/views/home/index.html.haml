@@ -1,16 +1,7 @@
-#header
-  #logo
-
-  #page_title
-    %h1 Datil Dave's Pepper Products
-  #nav
-    %ul
-      %li= link_to "Home", root_path
-      %li= link_to "Products", products_path
-      = pages.each do |page|
-        %li= link_to page.name, page
-      %li= link_to "Contact", "/contact/"
-
-#main
-
-#footer
+.row
+  .span12
+    .page-header
+      %h1 Datil Dave's Pepper Products
+.row
+  .span12
+    %p Welcome to Datil Dave's Pepper Products. Datil Dave offers specialty heirloom pepper products, product development services, consulting, agriculture advice, peppers, and seed stock for datil and other heirloom peppers.

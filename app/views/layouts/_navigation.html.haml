@@ -1,5 +1,13 @@
-= link_to "Home", root_path, class: 'brand'
-%ul.nav
+= link_to "Datil Dave", root_path, class: 'brand'
+%ul.nav.nav-tabs
+  %li
+    = link_to "Products", products_path
+  - pages.each do |page|
+    %li= link_to page.name, "/#{page.name.downcase}/"
+  %li
+    =link_to "Contact", "/contact/"
+  %li
+    = link_to "News", posts_path
   - if current_user
     %li
       = link_to "Log Out", "/log_out"

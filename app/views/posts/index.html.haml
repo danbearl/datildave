@@ -1,10 +1,12 @@
-- if current_user
-  = link_to "New Post", new_post_path
-  = notice
+.row
+  .span12
+    %h1 What's New at Datil Dave's
+    - if current_user
+      = link_to "New Post", new_post_path
   
-.posts
-  - posts.each do |post|
-    .post
+- posts.each do |post|
+  .row
+    .span12
       %h2= post.title
       %p.time= post.created_at.to_s(:us)
       %p.body= post.body
