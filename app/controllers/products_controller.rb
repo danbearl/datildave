@@ -25,7 +25,17 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart
-    session[:cart].to_a << product
+    unless session[:cart].is_a?(Array) 
+      session[:cart] = [] 
+    end
+
+    cart = {
+      :product_name => params[:product_name],
+      :product_price => params[:product_price],
+      :product_quantity => params[:quantity]
+    }
+
+    session[:cart] << cart
     redirect_to products_path, notice: "Added to cart."
   end
 end

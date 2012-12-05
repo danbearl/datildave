@@ -20,6 +20,14 @@
       Quantity:
       = product.quantity
 
-    = form_for product, action: :add_to_cart do
+    = form_tag action: :add_to_cart, method: :post do
+      = hidden_field_tag :product_id, product.id
+      = hidden_field_tag :product_name, product.name
+      = hidden_field_tag :product_price, product.price
+
+      %dt
+        = label_tag :quantity, "Quantity"
+      %dd
+        = text_field_tag :quantity
       .action
         = submit_tag "Add To Cart"
