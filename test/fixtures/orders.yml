@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  products: MyText
+  mailing_address: MyText
+  customer_name: MyString
+  customer_email: MyString
+  subtotal: MyString
+  shipping: MyString
+  shipped: false
+  notes: MyText
+
+two:
+  products: MyText
+  mailing_address: MyText
+  customer_name: MyString
+  customer_email: MyString
+  subtotal: MyString
+  shipping: MyString
+  shipped: false
+  notes: MyText
