@@ -7,7 +7,8 @@ Datildave::Application.routes.draw do
   get "posts/edit"
 
   post "product/add_to_cart" => "products#add_to_cart"
-
+  post "cart/empty_cart" => "cart#empty_cart"
+  get "cart" => "cart#show", :as => "cart"
   get "log_in" => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
   match "contact" => "contact#new", :as => "contact", :via => :get
