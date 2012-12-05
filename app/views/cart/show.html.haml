@@ -1,0 +1,35 @@
+.row
+  .span12
+    %h1 Cart
+
+.row
+  .span12
+    %table.table
+      %tr
+        %th Name
+        %th Price
+        %th Quantity
+        %th Subtotal
+
+      - session[:cart].each do |item|
+        .span12
+          %tr
+            %td
+              = item[:product_name]
+            %td
+              = number_to_currency item[:product_price]
+            %td
+              = item[:product_quantity]
+            %td
+              = number_to_currency(item[:product_price].to_f * item[:product_quantity].to_f)
+
+.row
+  .span3
+    %p
+      Subtotal:
+      = number_to_currency Cart.subtotal(session[:cart]).to_f
+.row
+  .span12
+    = form_tag action: :empty_cart do
+      = submit_tag "Empty Cart"
+
