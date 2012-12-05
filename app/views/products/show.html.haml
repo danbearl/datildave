@@ -1,24 +1,25 @@
-%h1= product.name
 
-.user_nav
-  - if current_user
-    = link_to "Edit", edit_product_path(product)
-    |
-    = link_to "Delete", product, method: :delete
+.row
+  .span12
+    %h1= product.name
+.row
+  .span12
+    %p
+      Name:
+      = product.name
 
-.main
-  %p
-    Name:
-    = product.name
+    %p
+      Description:
+      = product.description
 
-  %p
-    Description:
-    = product.description
+    %p
+      Price:
+      = number_to_currency(product.price)
 
-  %p
-    Price:
-    = number_to_currency(product.price)
+    %p
+      Quantity:
+      = product.quantity
 
-  %p
-    Quantity:
-    = product.quantity
+    = form_for product, action: :add_to_cart do
+      .action
+        = submit_tag "Add To Cart"

@@ -23,4 +23,9 @@ class ProductsController < ApplicationController
     product.destroy
     redirect_to products_path, notice: "Product successfully deleted."
   end
+
+  def add_to_cart
+    session[:cart].to_a << product
+    redirect_to products_path, notice: "Added to cart."
+  end
 end
