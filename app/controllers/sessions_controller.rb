@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  expose(:pages)
   def create
     user = User.authenticate(params[:name], params[:password])
 

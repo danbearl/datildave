@@ -1,4 +1,5 @@
 class ContactController < ApplicationController
+  expose(:pages)
   def new
     @message = Message.new
   end

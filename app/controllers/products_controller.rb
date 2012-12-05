@@ -1,9 +1,8 @@
 class ProductsController < ApplicationController
+
+  expose(:pages)
   expose(:products)
   expose(:product)
-
-  def edit
-  end
 
   def create
     @product = Product.new(params[:product])
