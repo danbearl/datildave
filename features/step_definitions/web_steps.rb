@@ -15,6 +15,18 @@ Given /^that user is logged in\.$/ do
   click_button "Log In"
 end
 
+Given /^that product is in the cart\.$/ do
+  visit product_path(@product)
+
+  fill_in "quantity", :with => '2'
+  
+  click_button "Add To Cart"
+end
+
+Given /^I am on the cart page\.$/ do
+  visit "/cart/"
+end
+
 Given /^I am on the products index page\.$/ do
   visit products_path
 end
