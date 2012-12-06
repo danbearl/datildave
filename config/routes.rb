@@ -1,11 +1,5 @@
 Datildave::Application.routes.draw do
   
-  get "orders/edit"
-
-  get "orders/index"
-
-  get "orders/show"
-
   get "posts/index"
 
   get "posts/new"
