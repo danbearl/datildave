@@ -1,0 +1,62 @@
+.row
+  .span12
+    %h1 Order
+
+.row
+  .span12
+    %table.table
+      %tr
+        %th Name
+        %th Price
+        %th Quantity
+        %th Subtotal
+
+      - session[:cart].each do |item|
+        .span12
+          %tr
+            %td
+              = item[:product_name]
+            %td
+              = number_to_currency item[:product_price]
+            %td
+              = item[:product_quantity]
+            %td
+              = number_to_currency(item[:product_price].to_f * item[:product_quantity].to_f)
+
+.row
+  .span12
+    = form_for order do |f|
+      %dt
+        = f.label :customer_first_name
+      %dd
+        = f.text_field :customer_first_name
+
+      %dt
+        = f.label :customer_last_name
+      %dd
+        = f.text_field :customer_last_name
+      
+      %dt
+        = f.label :customer_email
+      %dd
+        = f.label :customer_email
+     
+      %dt
+        = f.label :address_street_1
+      %dd
+        = f.text_field :address_street_1
+
+      %dt
+        = f.label :address_street_2
+      %dd
+        = f.text_field :address_street_2
+
+      %dt
+        = f.label :address_city
+      %dd
+        = f.text_field :address_city
+
+      %dt
+        = f.label :address_zip
+      %dd
+        = f.text_field :address_zip
