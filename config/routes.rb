@@ -21,6 +21,7 @@ Datildave::Application.routes.draw do
   resources :contacts
   resources :pages, only: [:new, :create]
   resources :posts
+  resources :orders
 
   #keep these at the bottom of your file. They should be the last routes.
   get "/:slug", to: "pages#show", as: :slug
