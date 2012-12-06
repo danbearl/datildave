@@ -25,9 +25,14 @@
 
 .row
   .span3
+    = link_to "Proceed to Check Out", new_order_path
+
+.row
+  .span3
     %p
       Subtotal:
       = number_to_currency Cart.subtotal(session[:cart]).to_f
+
 .row
   .span12
     = form_tag action: :empty_cart do

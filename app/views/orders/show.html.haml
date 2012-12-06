@@ -1,2 +1,25 @@
-%h1 Orders#show
-%p Find me in app/views/orders/show.html.haml
+.row
+  .span12
+    %h1 Order summary:
+
+.row
+  .span12
+    %table.table
+      %tr
+        %th Name
+        %th Price
+        %th Quantity
+        %th Subtotal
+
+      - order_items.each do |item|
+        .span12
+          %tr
+            %td
+              = item[:product_name]
+            %td
+              = number_to_currency item[:product_price]
+            %td
+              = item[:product_quantity]
+            %td
+              = number_to_currency(item[:product_price].to_f * item[:product_quantity].to_f)
+      
