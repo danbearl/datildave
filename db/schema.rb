@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121206183817) do
+ActiveRecord::Schema.define(:version => 20121207171036) do
 
   create_table "orders", :force => true do |t|
     t.text     "products"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(:version => 20121206183817) do
     t.string   "shipping"
     t.boolean  "shipped"
     t.text     "notes"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "address_street_1"
     t.string   "address_street_2"
     t.string   "address_city"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20121206183817) do
     t.boolean  "processed"
     t.string   "customer_first_name"
     t.string   "customer_last_name"
+    t.string   "stripe_payment_token"
   end
 
   create_table "pages", :force => true do |t|

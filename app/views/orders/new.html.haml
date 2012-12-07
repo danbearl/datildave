@@ -1,6 +1,6 @@
 .row
   .span12
-    %h1 Order
+    %h1 Place Order
 
 .row
   .span12
@@ -24,39 +24,81 @@
               = number_to_currency(item[:product_price].to_f * item[:product_quantity].to_f)
 
 .row
+  .span3
+    %p
+      Shipping:
+      = number_to_currency @shipping.to_f
+
+.row
+  .span3
+    %p
+      Total:
+      = number_to_currency @subtotal + @shipping
+
+.row
   .span12
     = form_for order do |f|
+      = f.hidden_field :shipped, value: "false"
+      = f.hidden_field :processed, value: "false"
+      = f.hidden_field :subtotal, value: @subtotal
+      = f.hidden_field :shipping, value: @shipping
+      = f.hidden_field :stripe_card_token
+      
       %dt
-        = f.label :customer_first_name
+        = f.label :customer_first_name, "First Name"
       %dd
         = f.text_field :customer_first_name
 
       %dt
-        = f.label :customer_last_name
+        = f.label :customer_last_name, "Last Name"
       %dd
         = f.text_field :customer_last_name
       
       %dt
-        = f.label :customer_email
+        = f.label :customer_email, "E-Mail"
       %dd
-        = f.label :customer_email
+        = f.text_field :customer_email
      
       %dt
-        = f.label :address_street_1
+        = f.label :address_street_1, "Street 1"
       %dd
         = f.text_field :address_street_1
 
       %dt
-        = f.label :address_street_2
+        = f.label :address_street_2, "Street 2"
       %dd
         = f.text_field :address_street_2
 
       %dt
-        = f.label :address_city
+        = f.label :address_city, "City"
       %dd
         = f.text_field :address_city
 
       %dt
-        = f.label :address_zip
+        = f.label :address_state, "State"
+      %dd
+        = f.text_field :address_state, size: "2"
+
+      %dt
+        = f.label :address_zip, "Zip"
       %dd
         = f.text_field :address_zip
+
+      %dt
+        %label Card Number
+      %dd
+        %input{type: "text", size: "20", autocomplete: "off", id: "card_number"}
+
+      %dt
+        %label CVC
+      %dd
+        %input{type: "text", size: "4", autocomplete: "off", id: "card_code"}
+
+      %dt
+        = label_tag :card_month, "Card Expiration"
+      %dd
+        = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+        = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
+
+      .action
+        = f.submit "Place Order"
