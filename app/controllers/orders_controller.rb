@@ -28,8 +28,4 @@ class OrdersController < ApplicationController
     end
   end
 
-  def payment
-    
-  end
-
 end
