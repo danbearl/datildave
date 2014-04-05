@@ -1,4 +1,3 @@
-@javascript
 Feature: Users
 	Background: User Exists
 		Given the following user:

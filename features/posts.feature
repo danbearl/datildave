@@ -1,4 +1,3 @@
-@javascript
 Feature: Posts
 	Background: User is logged in
 		Given the following user:

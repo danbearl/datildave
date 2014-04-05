@@ -1,4 +1,3 @@
-@javascript
 Feature: Orders
 	Background:
 		Given the following product:

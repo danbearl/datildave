@@ -7,7 +7,7 @@
 .row
   - products.each do |product|
     .span3.product
-      = product.name
+      = link_to product.name, product
       %br
       = link_to image_tag(product.image_url), product
       - if current_user

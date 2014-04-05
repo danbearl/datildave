@@ -1,4 +1,3 @@
-@javascript
 Feature: Contact
 	Scenario: Send Message
 		Given I am on the contact page.

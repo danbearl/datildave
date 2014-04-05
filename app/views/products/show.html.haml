@@ -2,6 +2,13 @@
 .row
   .span12
     %h1= product.name
+  
+    - if current_user
+      %br
+      = link_to "Edit", edit_product_path(product)
+      |
+      = link_to "Delete", product, confirm: "Deleting is irreversible. Do you wish to continue?", method: :delete
+
 .row
   .span12
     = image_tag (product.image_url)

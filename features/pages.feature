@@ -1,4 +1,3 @@
-@javascript
 Feature: Pages
 	Background:
 		Given the following user:
