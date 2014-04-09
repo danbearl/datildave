@@ -12,7 +12,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'rails', '4.0.3'
 gem 'rdiscount'
-gem 'rmagick'
+gem 'rmagick', require: false
 gem 'stripe'
 gem 'will_paginate', '~> 3.0.0'
 
