@@ -24,6 +24,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :production do
+  gem 'unicorn'
+end
+
 group :development, :test do
   gem 'sqlite3'
   gem 'pry'
