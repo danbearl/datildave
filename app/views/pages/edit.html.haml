@@ -1,2 +1,2 @@
-= form_for page, url: slug_path(page.slug), builder: Formal::Builder do |f|
+= form_for page, url: update_slug_path(page.slug), method: :put do |f|
   = render partial: "form", locals: { f:f }

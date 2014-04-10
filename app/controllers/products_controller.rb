@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   expose(:product)
 
   def create
-    @product = Product.new(params[:product])
+    @product = Product.new(product_params)
 
     if @product.save
       redirect_to products_path, notice: "Product successfully added."
@@ -15,8 +15,13 @@ class ProductsController < ApplicationController
   end
 
   def update
-    product.save
-    redirect_to product, notice: "Product successfully updated."
+    @product = Product.find(params[:id])
+    
+    if @product.update_attributes(product_params)
+      redirect_to @product, notice: "Product successfully updated."
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -37,5 +42,11 @@ class ProductsController < ApplicationController
 
     session[:cart] << cart
     redirect_to products_path, notice: "Added to cart."
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:description, :image, :name, :price, :quantity)
   end
 end

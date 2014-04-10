@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   expose(:pages)
 
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(post_params)
 
     if @post.save
       redirect_to posts_path, notice: "Post successfully created."
@@ -14,7 +14,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    if post.save
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
       redirect_to posts_path, notice: "Post successfully updated."
     else
       render "edit"
@@ -24,6 +25,12 @@ class PostsController < ApplicationController
   def destroy
     post.destroy
     redirect_to posts_path, notice: "Post successfully destroyed."
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:body, :title)
   end
 
 end

@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(params[:order])
+    @order = Order.new(order_params)
 
     @order.products = Order.package_products(session[:cart])
 
@@ -28,4 +28,9 @@ class OrdersController < ApplicationController
     end
   end
 
+  private
+
+  def order_params
+    params.require(:order).permit(:customer_email, :customer_first_name, :customer_last_name, :address_street_1, :address_street_2, :address_city, :address_state, :address_zip, :processed, :notes, :products, :shipped, :shipping, :subtotal, :stripe_card_token)
+  end
 end

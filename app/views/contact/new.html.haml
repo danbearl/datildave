@@ -1,7 +1,7 @@
 %h1 Contact Datil Dave
 
 .form
-  = form_for @message, :url => contact_path do |f|
+  = form_for @message, :url => create_contact_path do |f|
     .field
       = f.label :name
       %br

@@ -2,7 +2,7 @@
   .user_nav
     = link_to "Edit", edit_slug_path(page.slug)
     |
-    = link_to "Delete", slug_path(page.slug), method: :destroy
+    = link_to "Delete", destroy_slug_path(page.slug), method: :delete
 
 %article
   :markdown

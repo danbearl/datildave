@@ -15,7 +15,7 @@ Feature: Orders
 
 	Scenario: user checks out
 		Given I am on the cart page.
-		When I press "Check Out"
+		When I follow "Check Out"
 		And I fill in the following:
 			| first_name | "Dan" |
 			| last_name | "Bearl" |

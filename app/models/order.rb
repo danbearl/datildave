@@ -1,5 +1,4 @@
 class Order < ActiveRecord::Base
-  attr_accessible :customer_email, :customer_first_name, :customer_last_name, :address_street_1, :address_street_2, :address_city, :address_state, :address_zip, :processed, :notes, :products, :shipped, :shipping, :subtotal, :stripe_card_token
 
   attr_accessor :stripe_card_token
 
