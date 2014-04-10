@@ -25,6 +25,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'sqlite3'
   gem 'pry'
