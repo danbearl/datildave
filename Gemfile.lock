@@ -79,6 +79,9 @@ GEM
     excon (0.32.1)
     execjs (2.0.2)
     fabrication (2.11.0)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     fog (1.21.0)
       fog-brightbox
       fog-core (~> 1.21, >= 1.21.1)
@@ -224,6 +227,7 @@ DEPENDENCIES
   decent_exposure
   dirty
   fabrication
+  figaro
   fog
   formal
   haml-rails
