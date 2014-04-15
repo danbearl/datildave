@@ -61,16 +61,16 @@ module Datildave
     config.assets.version = '1.0'
     
   ActionMailer::Base.smtp_settings = {
-    :enable_starttls_auto => true,
-    :address => 'smtp.gmail.com',
-    :port => 587,
-    :domain => "datildave.com",
-    :user_name => "dan@datildave.com",
-    :password => "Lmb+Dmb=123"
+    :enable_starttls_auto => ENV['ENABLE_STARTTLS_AUTO'],
+    :address => ENV['ADDRESS'],
+    :port => ENV['PORT'],
+    :domain => ENV['DOMAIN'],
+    :user_name => ENV['USER_NAME'],
+    :password => ENV['PASSWORD']
   }
 
   config.action_mailer.default_url_options = {
-    :host => "datildave.com"
+    :host => ENV['HOST']
   }
   end
 end
