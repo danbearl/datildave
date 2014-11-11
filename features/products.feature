@@ -2,8 +2,8 @@ Feature: Products
 	Background:
 		Given the following user:
 			| name                  | user               |
-		        | email                 | dan@dadtildave.com |
-		        | password              | pass               |
+		  | email                 | dan@dadtildave.com |
+		  | password              | pass               |
 			| password_confirmation | pass               |
 		And that user is logged in.
 

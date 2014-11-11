@@ -1,31 +1,172 @@
 !!!
 %html
   %head
-    %meta{:charset => "utf-8"}
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %meta{charset: "utf-8"}
+    / [if IE]
+      %meta{"http-equiv" => "X-UA-Compatible", content: "IE=Edge,chrome=1"}
+    
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
     %title= content_for?(:title) ? yield(:title) : "Datil Dave"
-    %meta{:content => "", :name => "description"}
-    %meta{:content => "", :name => "author"}
-    %link{ "href" => 'http://fonts.googleapis.com/css?family=Sacramento', "rel" => 'stylesheet', "type" => 'text/css'}
-    = stylesheet_link_tag    "application", :media => "all"
+    %meta{content: "Datil Dave E-Commerce Site", name: "description"}
+    %meta{content: "Dan Bearl", name: "author"}
+    = stylesheet_link_tag    "application", media: "all"
+    = stylesheet_link_tag "bootstrap.min", media: "all"
     = javascript_include_tag  "https://js.stripe.com/v1/", "application"
     = csrf_meta_tags
-    = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
+
+    / Google Web Fonts
+    %link{href: "http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700", rel: "stylesheet", type: "text/css"}
+    %link{href: "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800", rel: "stylesheet", type: "text/css"}
+
+    / CSS Files
+    %link{href: "font-awesome/css/font-awesome.min.css", rel: "stylesheet"}
+    %link{href: "css/style.css", rel: "stylesheet"}
+    %link{href: "css/responsive.css", rel: "stylesheet"}
+
+    / [if lt IE 9]
+      %meta{"http-equiv" => "X-UA-Compatible", content: "IE=Edge,chrome=1"}
+      %script{src: "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"}
+      %script{src: 'https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'}
+
+    %link{rel: "apple-touch-icon-precomposed", sizes: "144x144", href: "images/fav-144.png"}
+    %link{rel: "apple-touch-icon-precomposed", sizes: "114x114", href: "images/fav-114.png"}
+    %link{rel: "apple-touch-icon-precomposed", sizes: "72x72", href: "images/fav-72.png"}
+    %link{rel: "apple-touch-icon-precomposed", href: "images/fav-57.png"}
+    %link{rel: "shortcut icon", href: "images/fav.png"}
+    = tag :meta, name: "stripe-key", content: STRIPE_PUBLIC_KEY
     = yield(:head)
 
   %body
-    %header.navbar
-      %nav.navbar-inner
-        .container
-          = render 'layouts/navigation'
-    #main{:role => "main"}
-      .container
-        .content
-          .row
-            .span12
-              = render 'layouts/messages'
-          = yield
-          %footer
-            %p 
-              &copy; Datil Dave | Site Designed and maintained by
-              = link_to "Daniel Bearl", "http://www.danielbearl.com"
+    %header#header-area
+      %div.container
+        /Main Header Starts
+        %div.main-header
+          %div.row
+            / Logo Starts
+            %div.col-md-9
+              %div#logo
+                =link_to image_tag( "logo.png", title: "Datil Dave Pepper Products", alt: "Spice Shoppe", class: "img-responsive"), "index.html"
+            /Shopping Cart Starts
+            %div.col-md-3
+              %div#cart.btn-group.btn-block
+                %button{type: "button", "data-toggle" => "dropdown", class: "btn btn-block btn-lg dropdown-toggle"}
+                  %i.fa.fa-shopping-cart
+                  %span.hidden-md Cart:
+                  %span#cart-total 2 item(s) - $340.00
+                  %i.fa.fa-caret-down
+                %ul.dropdown-menu.pull-right
+                  %li
+                    %table.table.table-striped.hcart
+                      %tr
+                        %td.text-center
+                          =link_to image_tag("product-images/hcart-thumb1.jpg", alt: "image", title: "image", class: "img-thumbnail img-responsive"), "product.html"
+                        %td.text-left
+                          =link_to "Seeds", "product-full.html"
+                        %td.text-right x 1
+                        %td.text-right $120.68
+                        %td.text-center
+                          %a{href: "#"}
+                            %i.fa.fa-times
+                      %tr
+                        %td.text-center
+                          =link_to image_tag("product-images/hcart-thumb2.jpg", alt: "image", title: "image", class: "img-thumbnail img-responsive"), "product.html"
+                        %td.text-left
+                          =link_to "Organic", "product-full.html"
+                        %td.text-right x 2
+                        %td.text-right $240.00
+                        %td.text-center
+                          %a{href: "#"}
+                            %i.fa.fa-times
+                  %li
+                    %table.table.table-bordered.total
+                      %tbody
+                        %tr
+                          %td.text-right
+                            %strong Sub-Total
+                          %td.text-left $1,101.00
+                        %tr
+                          %td.text-right
+                            %strong Eco Tax (-2.00)
+                          %td.text-left $4.00
+                        %tr
+                          %td.text-right
+                            %strong VAT (17.5%)
+                          %td.text-left $192.68
+                        %tr
+                          %td.text-right
+                            %strong Total
+                          %td.text-left $1,297.68
+                    %p.text-right.btn-block1
+                      %a{href: "cart.html"} View Cart
+                      %a{href: "#"}Checkout
+        / Main Menu Starts -->
+        -if current_user
+          %div#admin-nav.navbar
+            %ul.nav.navbar-nav
+              %li
+                =link_to "New Category", new_category_path
+              %li
+                =link_to "New Product", new_product_path
+        %nav#main-menu.navbar{role: "navigation"}
+          / Nav Header Starts
+          %div.navbar-header
+            %button{type: "button", class: "btn btn-navbar navbar-toggle", "data-toggle" => "collapse", "data-target" => ".navbar-cat-collapse"}
+              %span.sr-only Toggle Navigation
+              %i.fa.fa-bars
+          /Navbar Cat collapse Starts
+          %div.collapse.navbar-collapse.navbar-cat-collapse
+            %ul.nav.navbar-nav
+              -categories.each do |category|
+                %li
+                  =link_to category.name, "#"
+      %div.container
+        = yield
+      %footer#footer-area
+        %div.footer-links
+          %div.container
+            %div.col-md-2.col-sm-6
+              %h5 Information
+              %ul
+                %li
+                  =link_to "About Us", "/about"
+                %li
+                  =link_to "Delivery Information", "/delivery"
+                %li
+                  =link_to "Privacy Policy", "/privacy"
+                %li
+                  =link_to "Terms & Conditions", "/terms"
+            %div.col-md-2.col-sm-6
+              %h5 Service
+              %ul
+                %li
+                  =link_to "Contact Us", "/contact"
+                %li
+                  =link_to "Returns", "/returns"
+            %div.col-md-2.col-sm-6
+              %h5 Follow Us
+              %ul
+                %li
+                  =link_to "Facebook", "#"
+            %div.col-md-4.col-sm-12.last
+              %h5 Contact Us
+              %ul
+                %li Datil Dave
+                %li
+                  1247 LB Nagar Road, Hyderabad, Telangana - 35
+                %li
+                  Email: 
+                  =link_to "example@example.com", "#"
+              %h4.lead
+                Tel: 
+                %span 1(234) 567-9842
+      %div.copyright
+        %div.container
+          %p.pull-left
+            &nbsp; 2014 Datil Dave. Bootstrap Layout designed by <a href="http://sainathchillapuram.com">Sainath Chillapuram</a>
+          %ul.pull-right.list-inline
+            %li
+              =image_tag "/images/payment-icon/visa.png", alt: "PaymentGateway"
+            %li
+              =image_tag "/images/payment-icon/mastercard.png", alt: "PaymentGateway"
+            %li
+              =link_to "/images/payment-icon/americanexpress.png", alt: "PaymentGateway"

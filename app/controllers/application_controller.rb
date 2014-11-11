@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   expose(:page_slugs ) { Page.select(:slug).map(&:slug) }
+  expose(:categories)
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
