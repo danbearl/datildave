@@ -119,8 +119,7 @@
               -categories.each do |category|
                 %li
                   =link_to category.name, "#"
-      %div.container
-        = yield
+      = yield
       %footer#footer-area
         %div.footer-links
           %div.container
@@ -169,4 +168,4 @@
             %li
               =image_tag "/images/payment-icon/mastercard.png", alt: "PaymentGateway"
             %li
-              =link_to "/images/payment-icon/americanexpress.png", alt: "PaymentGateway"
+              =image_tag "/images/payment-icon/americanexpress.png", alt: "PaymentGateway"
