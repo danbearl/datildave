@@ -22,5 +22,10 @@
   .field
     = f.file_field :image
 
+  .field
+    = f.label :category_id
+    %br
+    = f.select(:category_id, options_for_select(categories_array_for_select, product.category_id))
+
   .action
     = f.submit

@@ -1,0 +1,45 @@
+%div.row
+  %div.col-md-9
+    %ol.breadcrumb
+      %li
+        = link_to "Edit Category", edit_category_path(category)
+      %li
+        = link_to "Delete Category", category, method: :delete, "data-confirm" => "Are you sure? This action cannot be undone."
+%div.row
+  %div.col-md-9
+    %ol.breadcrumb
+      %li
+        =link_to "Home", root_path
+      %li.active
+        =category.name
+    %h2.main-heading2
+      =category.name
+    %div.row.cat-intro
+      %div.col-sm-3
+        =image_tag category.image_url, alt: category.name, class: "img-responsive"
+      %div.col-sm-9.cat-body
+        =category.description
+    %div.product-filter
+      %div.row
+    %div.row
+      - category.products.each do |product|
+        %div.col-md-4.col-sm-6
+          %div.product-col
+            %div.image
+              =image_tag product.image_url, alt: product.name, class: "img-responsive"
+            %div.caption
+              %h4
+                =link_to product.name, product
+              %div.description
+                =product.description
+              %div.price
+                %span.price-new= number_to_currency(product.price)
+              %div.cart-button.button-group
+                %button{type: "button", class: "btn btn-cart"}
+                  Add to cart
+                  %i.fa.fa-shopping-cart
+  %div.col-md-3
+    %h3.side-heading Categories
+    %div.list-group
+      -categories.each do |category|
+        =link_to category.name, category, class: "list-group-item"

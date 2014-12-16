@@ -9,9 +9,11 @@
     %title= content_for?(:title) ? yield(:title) : "Datil Dave"
     %meta{content: "Datil Dave E-Commerce Site", name: "description"}
     %meta{content: "Dan Bearl", name: "author"}
-    = stylesheet_link_tag    "application", media: "all"
     = stylesheet_link_tag "bootstrap.min", media: "all"
-    = javascript_include_tag  "https://js.stripe.com/v1/", "application"
+    = stylesheet_link_tag "/font-awesome/css/font-awesome.min", media: "all"
+    = stylesheet_link_tag "style", media: "all"
+    = stylesheet_link_tag "responsive", media: "all"
+    = javascript_include_tag "https://js.stripe.com/v1/", "application"
     = csrf_meta_tags
 
     / Google Web Fonts
@@ -19,9 +21,9 @@
     %link{href: "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800", rel: "stylesheet", type: "text/css"}
 
     / CSS Files
-    %link{href: "font-awesome/css/font-awesome.min.css", rel: "stylesheet"}
-    %link{href: "css/style.css", rel: "stylesheet"}
-    %link{href: "css/responsive.css", rel: "stylesheet"}
+    //%link{href: "font-awesome/css/font-awesome.min.css", rel: "stylesheet"}
+    //%link{href: "css/style.css", rel: "stylesheet"}
+    //%link{href: "css/responsive.css", rel: "stylesheet"}
 
     / [if lt IE 9]
       %meta{"http-equiv" => "X-UA-Compatible", content: "IE=Edge,chrome=1"}
@@ -32,7 +34,7 @@
     %link{rel: "apple-touch-icon-precomposed", sizes: "114x114", href: "images/fav-114.png"}
     %link{rel: "apple-touch-icon-precomposed", sizes: "72x72", href: "images/fav-72.png"}
     %link{rel: "apple-touch-icon-precomposed", href: "images/fav-57.png"}
-    %link{rel: "shortcut icon", href: "images/fav.png"}
+    %link{rel: "shortcut icon", href: "/images/fav.png"}
     = tag :meta, name: "stripe-key", content: STRIPE_PUBLIC_KEY
     = yield(:head)
 
@@ -42,64 +44,42 @@
         /Main Header Starts
         %div.main-header
           %div.row
-            / Logo Starts
+            /Logo Starts
             %div.col-md-9
               %div#logo
-                =link_to image_tag( "logo.png", title: "Datil Dave Pepper Products", alt: "Spice Shoppe", class: "img-responsive"), "index.html"
+                =link_to image_tag( "logo.png", title: "Datil Dave Pepper Products", alt: "Spice Shoppe", class: "img-responsive"), root_path
             /Shopping Cart Starts
-            %div.col-md-3
-              %div#cart.btn-group.btn-block
-                %button{type: "button", "data-toggle" => "dropdown", class: "btn btn-block btn-lg dropdown-toggle"}
-                  %i.fa.fa-shopping-cart
-                  %span.hidden-md Cart:
-                  %span#cart-total 2 item(s) - $340.00
-                  %i.fa.fa-caret-down
-                %ul.dropdown-menu.pull-right
-                  %li
-                    %table.table.table-striped.hcart
-                      %tr
-                        %td.text-center
-                          =link_to image_tag("product-images/hcart-thumb1.jpg", alt: "image", title: "image", class: "img-thumbnail img-responsive"), "product.html"
-                        %td.text-left
-                          =link_to "Seeds", "product-full.html"
-                        %td.text-right x 1
-                        %td.text-right $120.68
-                        %td.text-center
-                          %a{href: "#"}
-                            %i.fa.fa-times
-                      %tr
-                        %td.text-center
-                          =link_to image_tag("product-images/hcart-thumb2.jpg", alt: "image", title: "image", class: "img-thumbnail img-responsive"), "product.html"
-                        %td.text-left
-                          =link_to "Organic", "product-full.html"
-                        %td.text-right x 2
-                        %td.text-right $240.00
-                        %td.text-center
-                          %a{href: "#"}
-                            %i.fa.fa-times
-                  %li
-                    %table.table.table-bordered.total
-                      %tbody
-                        %tr
-                          %td.text-right
-                            %strong Sub-Total
-                          %td.text-left $1,101.00
-                        %tr
-                          %td.text-right
-                            %strong Eco Tax (-2.00)
-                          %td.text-left $4.00
-                        %tr
-                          %td.text-right
-                            %strong VAT (17.5%)
-                          %td.text-left $192.68
-                        %tr
-                          %td.text-right
-                            %strong Total
-                          %td.text-left $1,297.68
-                    %p.text-right.btn-block1
-                      %a{href: "cart.html"} View Cart
-                      %a{href: "#"}Checkout
-        / Main Menu Starts -->
+            -if session.has_key?(:cart)
+              %a{href: "/cart"}
+                %div.col-md-3
+                  %div#cart.btn-group.btn-block
+                    %button{type: "button", "data-toggle" => "dropdown-menu", class: "btn btn-block btn-lg dropdown-toggle"}
+                      %i.fa.fa-shopping-cart
+                      %span.hidden-md
+                        Cart:
+                      %span#cart-total
+                        = "#{session[:cart].count} item(s) - #{number_to_currency(Cart.subtotal(session[:cart]).to_f)}"
+                      %i.fa.fa-caret-down
+                    %ul.dropdown-menu.pull-right
+                      %li
+                        %table.table.table-striped.hcart
+                          - session[:cart].each do |item|
+                            %tr
+                              %td.text-left
+                                =item[:product_name]
+                              %td.text-right= "x #{item[:product_quantity]}"
+                              %td.text-right= number_to_currency(item[:product_price])
+                      %li
+                        %table.table.table-bordered.total
+                          %tbody
+                            %tr
+                              %td.text-right
+                                %strong Sub-Total
+                              %td.text-left= number_to_currency(Cart.subtotal(session[:cart]).to_f)
+                        %p.text-right.btn-block1
+                          %a{href: "/cart"} View Cart
+                          %a{href: "#"}Checkout
+        / Main Menu Starts
         -if current_user
           %div#admin-nav.navbar
             %ul.nav.navbar-nav
@@ -107,6 +87,8 @@
                 =link_to "New Category", new_category_path
               %li
                 =link_to "New Product", new_product_path
+              %li
+                =link_to "Orders", orders_path
         %nav#main-menu.navbar{role: "navigation"}
           / Nav Header Starts
           %div.navbar-header
@@ -118,54 +100,53 @@
             %ul.nav.navbar-nav
               -categories.each do |category|
                 %li
-                  =link_to category.name, "#"
+                  =link_to category.name, category
+
+    %div#main-container.container
       = yield
-      %footer#footer-area
-        %div.footer-links
-          %div.container
-            %div.col-md-2.col-sm-6
-              %h5 Information
-              %ul
-                %li
-                  =link_to "About Us", "/about"
-                %li
-                  =link_to "Delivery Information", "/delivery"
-                %li
-                  =link_to "Privacy Policy", "/privacy"
-                %li
-                  =link_to "Terms & Conditions", "/terms"
-            %div.col-md-2.col-sm-6
-              %h5 Service
-              %ul
-                %li
-                  =link_to "Contact Us", "/contact"
-                %li
-                  =link_to "Returns", "/returns"
-            %div.col-md-2.col-sm-6
-              %h5 Follow Us
-              %ul
-                %li
-                  =link_to "Facebook", "#"
-            %div.col-md-4.col-sm-12.last
-              %h5 Contact Us
-              %ul
-                %li Datil Dave
-                %li
-                  1247 LB Nagar Road, Hyderabad, Telangana - 35
-                %li
-                  Email: 
-                  =link_to "example@example.com", "#"
-              %h4.lead
-                Tel: 
-                %span 1(234) 567-9842
-      %div.copyright
+
+    %footer#footer-area
+      %div.footer-links
         %div.container
-          %p.pull-left
-            &nbsp; 2014 Datil Dave. Bootstrap Layout designed by <a href="http://sainathchillapuram.com">Sainath Chillapuram</a>
-          %ul.pull-right.list-inline
-            %li
-              =image_tag "/images/payment-icon/visa.png", alt: "PaymentGateway"
-            %li
-              =image_tag "/images/payment-icon/mastercard.png", alt: "PaymentGateway"
-            %li
-              =image_tag "/images/payment-icon/americanexpress.png", alt: "PaymentGateway"
+          %div.col-md-2.col-sm-6
+            %h5 Information
+            %ul
+              %li
+                =link_to "About Us", "/about"
+              %li
+                =link_to "Delivery Information", "/delivery"
+              -# %li
+              -#   =link_to "Privacy Policy", "/privacy"
+              -# %li
+              -#   =link_to "Terms & Conditions", "/terms"
+          %div.col-md-2.col-sm-6
+            %h5 Service
+            %ul
+              %li
+                =link_to "Contact Us", "/contact"
+          %div.col-md-2.col-sm-6
+            %h5 Follow Us
+            %ul
+              %li
+                =link_to "Facebook", "https://www.facebook.com/pages/Datil-Dave/829884310389179?ref=br_tf"
+          %div.col-md-4.col-sm-12.last
+            %h5 Contact Us
+            %ul
+              %li Datil Dave
+              %li
+                Email: 
+                =mail_to "dan@datildave.com"
+            %h4.lead
+              Tel: 
+              %span (904) 540-1051
+    %div.copyright
+      %div.container
+        %p.pull-left
+          &nbsp; 2014 Datil Dave. Bootstrap Layout designed by <a href="http://sainathchillapuram.com">Sainath Chillapuram</a>
+        %ul.pull-right.list-inline
+          %li
+            =image_tag "/images/payment-icon/visa.png", alt: "PaymentGateway"
+          %li
+            =image_tag "/images/payment-icon/mastercard.png", alt: "PaymentGateway"
+          %li
+            =image_tag "/images/payment-icon/americanexpress.png", alt: "PaymentGateway"

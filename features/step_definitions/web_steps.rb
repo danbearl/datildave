@@ -35,6 +35,10 @@ Given /^I am on that product's page\.$/ do
   visit product_path(@product)
 end
 
+Given /^I am on that category's page\.$/ do
+  visit category_path(@category)
+end
+
 Given /^I am on that page\.$/ do
   visit "/#{@page.name}/"
 end

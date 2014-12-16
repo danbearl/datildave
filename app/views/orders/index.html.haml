@@ -1,2 +1,16 @@
-%h1 Orders#index
-%p Find me in app/views/orders/index.html.haml
+%h1 Orders
+%table.table.table-striped
+  %tr
+    %th Order #
+    %th Customer Email
+    %th Subtotal
+    %th Processed
+    %th Shipped
+  - orders.each do |order|
+    %tr
+      %td= link_to order.id, order
+      %td= link_to order.customer_email, order
+      %td= link_to number_to_currency(order.subtotal), order
+      %td= link_to order.processed.to_s, order
+      %td= link_to order.shipped.to_s, order
+

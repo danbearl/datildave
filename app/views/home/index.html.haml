@@ -1,198 +1,28 @@
 %div.slider
-  %div.container
-    %div#main-carousel.carousel.slide{"data-ride" => "carousel"}
-      %div.carousel-inner
-        %div.item.active
-          =image_tag "/images/slider-imgs/slide1-img.jpg", alt: "Slider", class: "img-responsive"
-        %div.item
-          =image_tag "/images/slider-imgs/slide1-img.jpg", alt: "Slider", class: "img-responsive"
-      %a{ class: "left carousel-control", href: "#main-carousel", role: "button", "data-slide" => "prev"}
-        %span.glyphicon.glyphicon-chevron-left
-      %a{ class: "right carousel-control", href: "#main-carousel", role: "button", "data-slide" => "next"}
-        %span.glyphicon.glyphicon-chevron-right
-%div.col3-banners
-  %div.container
-    %ul.row.list-unstyled
-      %li.col-sm-4
-        =image_tag "/images/banners/3col-banner1.jpg", alt: "banners", class: "img-responsive"
-      %li.col-sm-4
-        =image_tag "/images/banners/3col-banner2.jpg", alt: "banners", class: "img-responsive"
-      %li.col-sm-4
-        =image_tag "/images/banners/3col-banner3.jpg", alt: "banners", class: "img-responsive"
+  %div#main-carousel.carousel.slide{"data-ride" => "carousel"}
+    %div.carousel-inner
+      %div.item.active
+        =image_tag "/images/slider-imgs/slide1-img.jpg", alt: "Slider", class: "img-responsive"
+      %div.item
+        =image_tag "/images/slider-imgs/slide2-img.jpg", alt: "Slider", class: "img-responsive"
+    %a{ class: "left carousel-control", href: "#main-carousel", role: "button", "data-slide" => "prev"}
+      %span.glyphicon.glyphicon-chevron-left
+    %a{ class: "right carousel-control", href: "#main-carousel", role: "button", "data-slide" => "next"}
+      %span.glyphicon.glyphicon-chevron-right
 
 %section.products-list
-  %div.container
-    %h2.product-head Latest Products
-    %div.row
+  %h2.product-head Latest Products
+  %div.row
+    - latest_products.each do |product|
       %div.col-md-3.col-sm-6
         %div.product-col
           %div.image
-            =image_tag "/images/product-images/pimg1.jpg", alt: "product", class: "img-responsive"
+            =image_tag product.image_url, alt: product.name, class: "img-responsive"
           %div.caption
             %h4
-              =link_to "Simply Organic Seeds", "product.html"
+              =link_to product.name, product
             %div.description
-              We are so lucky living in such a wonderful time. Our almost unlimited ...
+              =product.description
             %div.price
-              %span.price-new $199.50
-              %span.price-old $249.50
-            %div.cart-button.button-group
-              %button{ type: "button", title: "Wishlist", class: "btn btn-wishlist" }
-                %i.fa.fa-heart
-              %button{ type: "button", title: "Compare", class: "btn btn-compare" }
-                %i.fa.fa-bar-chart-o
-              %button{ type: "button", class: "btn btn-cart" }
-                Add to cart
-                %i.fa.fa-shopping-cart
-      %div.col-md-3.col-sm-6
-        %div.product-col
-          %div.image
-            =image_tag "/images/product-images/pimg1.jpg", alt: "product", class: "img-responsive"
-          %div.caption
-            %h4 
-              =link_to "Simply Organic Seeds", "product.html"
-            %div.description
-              We are so lucky living in such a wonderful time. Our almost unlimited ...
-            %div.price
-              %span.price-new $199.50
-              %span.price-old $249.50
-            %div.cart-button.button-group
-              %button{ type: "button", title: "Wishlist", class: "btn btn-wishlist" }
-                %i.fa.fa-heart
-              %button{ type: "button", title: "Compare", class: "btn btn-compare" }
-                %i.fa.fa-bar-chart-o
-              %button{ type: "button", class: "btn btn-cart" }
-                Add to cart
-                %i.fa.fa-shopping-cart
-      %div.col-md-3.col-sm-6
-        %div.product-col
-          %div.image
-            =image_tag "/images/product-images/pimg1.jpg", alt: "product", class: "img-responsive"
-          %div.caption
-            %h4
-              =link_to "Simply Organic Seeds", "product.html"
-            %div.description
-              We are so lucky living in such a wonderful time. Our almost unlimited ...
-            %div.price
-              %span.price-new $199.50
-              %span.price-old $249.50
-            %div.cart-button.button-group
-              %button{ type: "button", title: "Wishlist", class: "btn btn-wishlist" }
-                %i.fa.fa-heart
-              %button{ type: "button", title: "Compare", class: "btn btn-compare" }
-                %i.fa.fa-bar-chart-o
-              %button{ type: "button", class: "btn btn-cart" }
-                Add to cart
-                %i.fa.fa-shopping-cart
-      %div.col-md-3.col-sm-6
-        %div.product-col
-          %div.image
-            =image_tag "/images/product-images/pimg1.jpg", alt: "product", class: "img-responsive"
-          %div.caption
-            %h4
-              =link_to "Simply Organic Seeds", "product.html"
-            %div.description
-              We are so lucky living in such a wonderful time. Our almost unlimited ...
-            %div.price
-              %span.price-new $199.50
-              %span.price-old $249.50
-            %div.cart-button.button-group
-              %button{ type: "button", title: "Wishlist", class: "btn btn-wishlist" }
-                %i.fa.fa-heart
-              %button{ type: "button", title: "Compare", class: "btn btn-compare" }
-                %i.fa.fa-bar-chart-o
-              %button{ type: "button", class: "btn btn-cart" }
-                Add to cart
-                %i.fa.fa-shopping-cart
-%div.col2-banners
-  %div.container
-    %ul.row.list-unstyled
-      %li.col-sm-4
-        =image_tag "/images/banners/2col-banner1.jpg", alt: "banners", class: "img-responsive"
-      %li.col-sm-8
-        =image_tag "/images/banners/2col-banner2.jpg", alt: "banners", class: "img-responsive"
-
-%section.products-list
-  %div.container
-    %h2.product-head Specials
-    %div.row
-      %div.col-md-3.col-sm-6
-        %div.product-col
-          %div.image
-            =image_tag "/images/product-images/pimg1.jpg", alt: "product", class: "img-responsive"
-          %div.caption
-            %h4
-              =link_to "Simply Organic", "product-full.html"
-            %div.description
-              We are so lucky living in such a wonderful time. Our almost unlimited ...
-            %div.price
-              %span.price-new $199.50
-              %span.price-old $249.50
-            %div.cart-button.button-group
-              %button{ type: "button", title: "Wishlist", class: "btn btn-wishlist" }
-                %i.fa.fa-heart
-              %button{ type: "button", title: "Compare", class: "btn btn-compare" }
-                %i.fa.fa-bar-chart-o
-              %button{ type: "button", class: "btn btn-cart" }
-                Add to cart
-                %i.fa.fa-shopping-cart
-      %div.col-md-3.col-sm-6
-        %div.product-col
-          %div.image
-            =image_tag "/images/product-images/pimg1.jpg", alt: "product", class: "img-responsive"
-          %div.caption
-            %h4
-              =link_to "Simply Organic", "product-full.html"
-            %div.description
-              We are so lucky living in such a wonderful time. Our almost unlimited ...
-            %div.price
-              %span.price-new $199.50
-              %span.price-old $249.50
-            %div.cart-button.button-group
-              %button{ type: "button", title: "Wishlist", class: "btn btn-wishlist" }
-                %i.fa.fa-heart
-              %button{ type: "button", title: "Compare", class: "btn btn-compare" }
-                %i.fa.fa-bar-chart-o
-              %button{ type: "button", class: "btn btn-cart" }
-                Add to cart
-                %i.fa.fa-shopping-cart
-      %div.col-md-3.col-sm-6
-        %div.product-col
-          %div.image
-            =image_tag "/images/product-images/pimg1.jpg", alt: "product", class: "img-responsive"
-          %div.caption
-            %h4
-              =link_to "Simply Organic", "product-full.html"
-            %div.description
-              We are so lucky living in such a wonderful time. Our almost unlimited ...
-            %div.price
-              %span.price-new $199.50
-              %span.price-old $249.50
-            %div.cart-button.button-group
-              %button{ type: "button", title: "Wishlist", class: "btn btn-wishlist" }
-                %i.fa.fa-heart
-              %button{ type: "button", title: "Compare", class: "btn btn-compare" }
-                %i.fa.fa-bar-chart-o
-              %button{ type: "button", class: "btn btn-cart" }
-                Add to cart
-                %i.fa.fa-shopping-cart
-      %div.col-md-3.col-sm-6
-        %div.product-col
-          %div.image
-            =image_tag "/images/product-images/pimg1.jpg", alt: "product", class: "img-responsive"
-          %div.caption
-            %h4
-              =link_to "Simply Organic", "product-full.html"
-            %div.description
-              We are so lucky living in such a wonderful time. Our almost unlimited ...
-            %div.price
-              %span.price-new $199.50
-              %span.price-old $249.50
-            %div.cart-button.button-group
-              %button{ type: "button", title: "Wishlist", class: "btn btn-wishlist" }
-                %i.fa.fa-heart
-              %button{ type: "button", title: "Compare", class: "btn btn-compare" }
-                %i.fa.fa-bar-chart-o
-              %button{ type: "button", class: "btn btn-cart" }
-                Add to cart
-                %i.fa.fa-shopping-cart
+              %span.price-new
+                = number_to_currency(product.price)

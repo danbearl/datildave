@@ -3,6 +3,10 @@ class ProductsController < ApplicationController
   expose(:pages)
   expose(:products)
   expose(:product)
+  expose(:categories)
+  expose(:categories_array_for_select) {
+    categories.to_a.map { |cat| [cat.name, cat.id] }
+  }
 
   def create
     @product = Product.new(product_params)
@@ -47,6 +51,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:description, :image, :name, :price, :quantity)
+    params.require(:product).permit(:description, :image, :name, :price, :quantity, :category_id)
   end
 end
