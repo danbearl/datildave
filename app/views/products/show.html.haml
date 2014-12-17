@@ -1,6 +1,6 @@
 
 .row
-  .span12
+  .col-md-9
     %h1= product.name
   
     - if current_user
@@ -10,7 +10,7 @@
       = link_to "Delete", product, data: { confirm: "Deleting is irreversible. Do you wish to continue?" }, method: :delete
 
 .row
-  .span12
+  .col-md-9
     = image_tag (product.image_url)
 
     %p

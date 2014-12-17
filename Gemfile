@@ -16,6 +16,7 @@ gem 'rails', '4.0.3'
 gem 'rdiscount'
 gem 'rmagick', require: false
 gem 'stripe'
+gem 'turbolinks'
 gem 'will_paginate', '~> 3.0.0'
 
 group :assets do

@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
     }
 
     session[:cart] << cart
-    redirect_to products_path, notice: "Added to cart."
+    redirect_to root_path, notice: "Added to cart."
   end
 
   private

@@ -49,18 +49,20 @@
               %div#logo
                 =link_to image_tag( "logo.png", title: "Datil Dave Pepper Products", alt: "Spice Shoppe", class: "img-responsive"), root_path
             /Shopping Cart Starts
-            -if session.has_key?(:cart)
-              %a{href: "/cart"}
-                %div.col-md-3
-                  %div#cart.btn-group.btn-block
-                    %button{type: "button", "data-toggle" => "dropdown-menu", class: "btn btn-block btn-lg dropdown-toggle"}
-                      %i.fa.fa-shopping-cart
-                      %span.hidden-md
-                        Cart:
-                      %span#cart-total
+            %div.col-md-3
+              %div#cart.btn-group.btn-block
+                %a{href: "/cart"}
+                  %button{type: "button", "data-toggle" => "dropdown-menu", class: "btn btn-block btn-lg dropdown-toggle"}
+                    %i.fa.fa-shopping-cart
+                    %span.hidden-md
+                      Cart:
+                    %span#cart-total
+                      -if session.has_key?(:cart)
                         = "#{session[:cart].count} item(s) - #{number_to_currency(Cart.subtotal(session[:cart]).to_f)}"
-                      %i.fa.fa-caret-down
-                    %ul.dropdown-menu.pull-right
+                      -else
+                        0 item(s) - $0.00
+                  %ul.dropdown-menu.pull-right
+                    -if session.has_key?(:cart)
                       %li
                         %table.table.table-striped.hcart
                           - session[:cart].each do |item|

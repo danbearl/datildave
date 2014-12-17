@@ -1,9 +1,9 @@
 .row
-  .span12
+  .col-md-9
     %h1 Place Order
 
 .row
-  .span12
+  .col-md-9
     %table.table
       %tr
         %th Name
@@ -12,7 +12,7 @@
         %th Subtotal
 
       - session[:cart].each do |item|
-        .span12
+        .col-md-9
           %tr
             %td
               = item[:product_name]
@@ -24,19 +24,19 @@
               = number_to_currency(item[:product_price].to_f * item[:product_quantity].to_f)
 
 .row
-  .span3
+  .col-md-3
     %p
       Shipping:
       = number_to_currency @shipping.to_f
 
 .row
-  .span3
+  .col-md-3
     %p
       Total:
       = number_to_currency @subtotal + @shipping
 
 .row
-  .span12
+  .col-md-9
     = form_for order do |f|
       = f.hidden_field :shipped, value: "false"
       = f.hidden_field :processed, value: "false"
