@@ -1,25 +1,39 @@
 .row
-  .span12
+  .col-md-9
     %h1 Order summary:
 
 .row
-  .span12
-    %table.table
-      %tr
-        %th Name
-        %th Price
-        %th Quantity
-        %th Subtotal
+  .col-md-9
+    = link_to "Edit", edit_order_path(order)
 
-      - order_items.each do |item|
-        .span12
-          %tr
-            %td
-              = item[:product_name]
-            %td
-              = number_to_currency item[:product_price]
-            %td
-              = item[:product_quantity]
-            %td
-              = number_to_currency(item[:product_price].to_f * item[:product_quantity].to_f)
-      
+.row
+  .col-md-9
+    %p
+      %strong Customer name: 
+      = "#{order.customer_first_name} #{order.customer_last_name}"
+    %p
+      %strong Customer email: 
+      = order.customer_email
+    %p 
+      %strong Shipping Address:
+    %address
+      =order.address_street_1
+      %br
+      -unless order.address_street_2.nil? or order.address_street_2 == ""
+        =order.address_street_2
+        %br
+      = "#{order.address_city}, #{order.address_state} #{order.address_zip}"
+
+    %table.table.table-striped
+      %tr
+        %th Product
+        %th Price
+        %th Qty
+      - Order.unpack_products(order.products).each do |product|
+        %tr
+          %td= product[:product_name]
+          %td= number_to_currency(product[:product_price].to_f)
+          %td= product[:product_quantity]
+
+    %p= "Processed: #{order.processed.to_s}"
+    %p= "Shipped: #{order.shipped.to_s}"
