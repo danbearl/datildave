@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  before_filter :require_user, only: [:new, :create, :update, :destroy]
+
   expose(:posts) {Post.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')}
   expose(:post)
   expose(:pages)

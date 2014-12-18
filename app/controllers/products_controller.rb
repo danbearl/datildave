@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  before_filter :require_user, only: [:new, :create, :update, :destroy]
+
   expose(:pages)
   expose(:products)
   expose(:product)

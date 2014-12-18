@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+
+  before_filter :require_user, only: [:new, :create, :update, :destroy]
   
   expose(:categories)
   expose(:category)

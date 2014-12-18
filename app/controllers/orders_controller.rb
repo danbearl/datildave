@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
 
+  before_filter :require_user, only: [:update, :destroy]
+
   expose(:pages)
   expose(:orders)
   expose(:order)
   expose(:order_items) {Order.unpack_products(order.products)}
 
   def new
+    @order = order
     @subtotal = 0 
     @shipping = 0    
     session[:cart].each do |item|

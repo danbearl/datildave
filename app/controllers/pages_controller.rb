@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  before_filter :require_user, only: [:new, :create, :update, :destroy]
+
   expose(:pages)
   expose(:page, finder: :find_by_slug, finder_parameter: :slug)
 
