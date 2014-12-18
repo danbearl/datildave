@@ -3,6 +3,14 @@
     %h1 Place Order
 
 .row
+  - if @order.errors.any?
+    .alert.alert-warning
+      = pluralize(@order.errors.count, "error") 
+      prohibited this order from being placed:
+
+      %ul
+        - @order.errors.full_messages.each do |msg|
+          %li= msg
   .col-md-9
     %table.table
       %tr

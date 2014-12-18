@@ -43,6 +43,12 @@
       %div.container
         /Main Header Starts
         %div.main-header
+          -[:notice, :error, :alert].each do |level|
+            - unless flash[level].blank?
+              %div{class: "alert alert-#{flash_class(level)}"}
+                %a{ href: "#", class: "close", data: { dismiss: "alert" } } &times;
+                = flash[level]
+
           %div.row
             /Logo Starts
             %div.col-md-9

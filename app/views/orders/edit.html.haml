@@ -1,2 +1,52 @@
-%h1 Orders#edit
-%p Find me in app/views/orders/edit.html.haml
+%h1= "Edit Order ##{order.id}"
+
+=form_for order do |f|
+  .field
+    = f.label :customer_email
+    %br
+    = f.text_field :customer_email
+
+  .field
+    = f.label :customer_first_name
+    %br
+    = f.text_field :customer_last_name
+
+  .field
+    = f.label :address_street_1
+    %br
+    = f.text_field :address_street_1
+
+  .field
+    = f.label :address_street_2
+    %br
+    = f.text_field :address_street_2
+
+  .field
+    = f.label :address_city
+    %br
+    = f.text_field :address_city
+
+  .field
+    = f.label :address_state
+    %br
+    = f.text_field :address_state
+    
+  .field
+    = f.label :address_zip
+    %br
+    = f.text_field :address_zip
+
+  .field
+    = f.label :processed
+    %br
+    = f.check_box :processed
+
+  .field
+    = f.label :shipped
+    %br
+    = f.check_box :shipped
+
+  .field
+    = f.label :notes
+    %br
+    = f.text_area :notes

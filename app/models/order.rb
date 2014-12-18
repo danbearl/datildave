@@ -2,6 +2,9 @@ class Order < ActiveRecord::Base
 
   attr_accessor :stripe_card_token
 
+  validates_presence_of :customer_email, :address_street_1, :address_city, :address_state, :address_zip
+  validates_format_of :customer_email, with: /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
+
   def save_with_payment
     if valid?
       total = (100 * (shipping.to_f + subtotal.to_f)).to_i

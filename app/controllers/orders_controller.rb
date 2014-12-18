@@ -27,7 +27,22 @@ class OrdersController < ApplicationController
       session[:cart] = []
       redirect_to root_path, notice: "Thank you for your order!"
     else
-      redirect_to "/cart/", notice: "Some error prevented processing of your order."
+      @subtotal = 0 
+      @shipping = 0    
+      session[:cart].each do |item|
+        @subtotal += item[:product_price].to_f * item[:product_quantity].to_f
+        @shipping += item[:shipping].to_f * item[:product_quantity].to_f
+      end
+
+      render "new"
+    end
+  end
+
+  def update
+    if order.update_attributes(order_params)
+      redirect_to order, notice: "Order updated."
+    else
+      render 'edit'
     end
   end
 
