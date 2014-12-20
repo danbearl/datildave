@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_filter :require_user, only: [:update, :destroy]
+  before_filter :require_user, only: [:show, :edit, :update, :destroy]
 
   expose(:pages)
   expose(:orders)

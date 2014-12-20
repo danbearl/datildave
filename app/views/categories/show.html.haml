@@ -1,10 +1,11 @@
 .row
   .col-md-9
-    %ol.breadcrumb
-      %li
-        = link_to "Edit Category", edit_category_path(category)
-      %li
-        = link_to "Delete Category", category, method: :delete, "data-confirm" => "Are you sure? This action cannot be undone."
+    - if current_user
+      %ol.breadcrumb
+        %li
+          = link_to "Edit Category", edit_category_path(category)
+        %li
+          = link_to "Delete Category", category, method: :delete, "data-confirm" => "Are you sure? This action cannot be undone."
 .row
   .col-md-9
     %ol.breadcrumb
