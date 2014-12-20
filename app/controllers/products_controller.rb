@@ -40,14 +40,19 @@ class ProductsController < ApplicationController
       session[:cart] = [] 
     end
 
-    cart = {
-      :product_name => params[:product_name],
-      :product_price => params[:product_price],
-      :product_quantity => params[:quantity]
-    }
+    if params[:quantity].to_i > product.quantity || params[:quantity].to_i <= 0
+      redirect_to product, notice: "Insufficient quantity in stock!"
+    else
+      cart = {
+        :product_id => params[:product_id],
+        :product_name => params[:product_name],
+        :product_price => params[:product_price],
+        :product_quantity => params[:quantity]
+      }
 
-    session[:cart] << cart
-    redirect_to root_path, notice: "Added to cart."
+      session[:cart] << cart
+      redirect_to root_path, notice: "Added to cart."
+    end
   end
 
   private

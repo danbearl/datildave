@@ -23,7 +23,7 @@
 
     %p
       Quantity:
-      = product.quantity
+      = product.quantity > 0 ? product.quantity : "Sold out!"
 
     = form_tag action: :add_to_cart, method: :post do
       = hidden_field_tag :product_id, product.id

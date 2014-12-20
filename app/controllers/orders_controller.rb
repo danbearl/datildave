@@ -24,6 +24,14 @@ class OrdersController < ApplicationController
     @order.products = Order.package_products(session[:cart])
 
     if @order.save_with_payment
+      
+      session[:cart].each do |item|
+        product = Product.find(item[:product_id])
+        new_quantity = product.quantity - item[:product_quantity].to_i
+
+        product.update_attribute(:quantity, new_quantity)
+      end
+
       session[:cart] = []
       redirect_to root_path, notice: "Thank you for your order!"
     else
