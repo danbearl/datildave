@@ -58,7 +58,7 @@ module Datildave
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = '1.1'
     
   ActionMailer::Base.smtp_settings = {
     :enable_starttls_auto => ENV['ENABLE_STARTTLS_AUTO'],
