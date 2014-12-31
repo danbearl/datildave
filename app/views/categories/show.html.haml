@@ -23,7 +23,7 @@
     .product-filter
       .row
     .row
-      - category.products.each do |product|
+      - category.products.order(:priority).each do |product|
         .col-md-4.col-sm-6
           .product-col
             .image

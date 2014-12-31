@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
 
   before_filter :require_user, only: [:new, :create, :edit, :update, :destroy]
   
-  expose(:categories)
+  expose(:categories) { Category.all.order(:priority) }
   expose(:category)
 
   def create
@@ -31,6 +31,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :description, :image)
+    params.require(:category).permit(:name, :description, :image, :priority)
   end
 end

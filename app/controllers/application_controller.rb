@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   expose(:page_slugs ) { Page.select(:slug).map(&:slug) }
-  expose(:categories)
+  expose(:categories) { Category.all.order(:priority) }
   expose(:latest_products) { Product.last(4) }
 
   def current_user
