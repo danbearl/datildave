@@ -25,6 +25,11 @@
     = f.number_field :priority
 
   .field
+    = f.label :featured
+    %br
+    = f.check_box :featured
+
+  .field
     = f.file_field :image
 
   .field

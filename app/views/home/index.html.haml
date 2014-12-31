@@ -11,9 +11,9 @@
       %span.glyphicon.glyphicon-chevron-right
 
 %section.products-list
-  %h2.product-head Latest Products
+  %h2.product-head Featured Products
   %div.row
-    - latest_products.each do |product|
+    - featured_products.order(:priority).each do |product|
       %div.col-md-3.col-sm-6
         %div.product-col
           %div.image
