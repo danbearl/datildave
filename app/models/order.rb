@@ -42,6 +42,10 @@ class Order < ActiveRecord::Base
     tmp
   end
 
+  def total
+    subtotal.to_f + shipping.to_f
+  end
+
   private
   
   def self.hash_to_string(hsh)

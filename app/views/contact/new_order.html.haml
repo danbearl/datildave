@@ -1,0 +1,41 @@
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8"}
+
+  %body
+    %p Someone just placed an order on datildave.com!
+    %p Here are the details:
+
+    %p 
+      Shipping Address:
+      %br
+
+      = "#{@order.customer_first_name} #{@order.customer_last_name}"
+      %br
+      = @order.address_street_1
+      %br
+
+      -if @order.address_street_2
+        = @order.address_street_2
+        %br
+
+      = "#{@order.address_city}, #{@order.address_state} #{@order.address_zip}"
+
+    %p
+      Order Details:
+      %br
+    %table
+      %tr
+        %th Item
+        %th Price
+        %th Qty
+        %th Subtotal
+      - Order.unpack_products(@order.products).each do |product|
+        %tr
+          %td= product[:product_name]
+          %td= number_to_currency(product[:product_price].to_f)
+          %td= product[:product_quantity]
+          %td= number_to_currency(product[:product_price].to_f * product[:product_quantity].to_i)
+    %p= "Subtotal: #{number_to_currency(@order.subtotal)}"
+    %p= "Shipping: #{number_to_currency(@order.shipping)}"
+    %p= "Total: #{number_to_currency(@order.total)}"
