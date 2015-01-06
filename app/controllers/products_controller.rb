@@ -42,6 +42,8 @@ class ProductsController < ApplicationController
 
     if params[:quantity].to_i > product.quantity || params[:quantity].to_i <= 0
       redirect_to product, notice: "Insufficient quantity in stock!"
+    elsif params[:quantity].to_i < product.minimum_order
+      redirect_to product, notice: "The minimum order for this product is #{product.minimum_order}"
     else
       cart = {
         :product_id => params[:product_id],
@@ -58,6 +60,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:description, :image, :name, :price, :quantity, :category_id, :priority, :featured)
+    params.require(:product).permit(:description, :image, :name, :price, :quantity, :category_id, :priority, :featured, :frozen_product, :minimum_order)
   end
 end

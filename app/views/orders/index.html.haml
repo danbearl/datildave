@@ -2,6 +2,7 @@
 %table.table.table-striped
   %tr
     %th Order #
+    %th Date
     %th Customer Email
     %th Subtotal
     %th Processed
@@ -9,6 +10,7 @@
   - orders.each do |order|
     %tr
       %td= link_to order.id, order
+      %td= link_to order.created_at.strftime('%F'), order
       %td= link_to order.customer_email, order
       %td= link_to number_to_currency(order.subtotal), order
       %td= link_to order.processed.to_s, order

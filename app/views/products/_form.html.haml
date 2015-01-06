@@ -25,9 +25,17 @@
     = f.number_field :priority
 
   .field
-    = f.label :featured
+    = f.label :minimum_order
     %br
+    = f.number_field :minimum_order
+
+  .field
+    = f.label :featured
     = f.check_box :featured
+
+  .field
+    = f.label :frozen_product
+    = f.check_box :frozen_product
 
   .field
     = f.file_field :image

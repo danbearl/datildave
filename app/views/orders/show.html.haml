@@ -9,6 +9,9 @@
 .row
   .col-md-9
     %p
+      %strong Order Date: 
+      = order.created_at.strftime('%F')
+    %p
       %strong Customer name: 
       = "#{order.customer_first_name} #{order.customer_last_name}"
     %p

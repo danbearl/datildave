@@ -10,11 +10,23 @@ class OrdersController < ApplicationController
   def new
     @order = order
     @subtotal = 0 
-    @shipping = 0    
+    @shipping = 0
+    frozen_products = 0
+    unfrozen_products = 0
     session[:cart].each do |item|
+      product = Product.find(item[:product_id].to_i)
       @subtotal += item[:product_price].to_f * item[:product_quantity].to_f
       @shipping += item[:shipping].to_f * item[:product_quantity].to_f
+      if product.frozen_product == true
+        frozen_products += 1 
+      else
+        unfrozen_products +=1
+      end
     end
+
+    @shipping = 12.65 if unfrozen_products > 0 && frozen_products == 0
+    @shipping = 17.65 if unfrozen_products == 0 && frozen_products > 0
+    @shipping = 30.3 if unfrozen_products > 0 && frozen_products > 0
 
   end
 
