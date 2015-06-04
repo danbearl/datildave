@@ -1,8 +1,10 @@
 Feature: Orders
 	Background:
 		Given the following product:
-			| name  | sausage |
-			| price | 3       |
+			| name          | sausage |
+			| price         | 3       |
+      | quantity      | 3       |
+      | minimum_order | 1       |
 		And that product is in the cart.
 
 	Scenario: user creates new order
@@ -13,16 +15,10 @@ Feature: Orders
 		And I press "Add To Cart"
 		Then I should see "Added to cart."
 
-	Scenario: user checks out
-		Given I am on the cart page.
-		When I follow "Check Out"
+	Scenario: user can't order more than is in stock
+		Given I am on the products index page.
+		When I follow "sausage"
 		And I fill in the following:
-			| first_name | "Dan" |
-			| last_name | "Bearl" |
-			| email | "dan@datildave.com" |
-			| street_1 | "1234 Some Street" |
-			| city | "Jacksonville" |
-			| state | "FL" |
-			| zip | "12345 |
-		And I press "Submit"
-		Then I should see "Order Complete!"
+			| quantity | 4 |
+		And I press "Add To Cart"
+		Then I should see "Insufficient quantity"

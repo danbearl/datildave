@@ -8,7 +8,7 @@ Feature: Products
 		And that user is logged in.
 
 	Scenario: create new product
-		Given I am on the products index page.
+		Given I am on the home page.
 		When I follow "New Product"
 		And I fill in the following:
 			| product_name        | sausage                  |

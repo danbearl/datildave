@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   expose(:pages)
   expose(:products)
   expose(:product)
-  expose(:categories) { Category.all.order_by(:priority) }
+  expose(:categories) { Category.all.order(:priority) }
   expose(:categories_array_for_select) {
     categories.to_a.map { |cat| [cat.name, cat.id] }
   }
