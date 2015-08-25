@@ -8,7 +8,7 @@ Datildave::Application.routes.draw do
   get "log_out" => "sessions#destroy", as: "log_out"
   get "contact" => "contact#new", as: :new_contact
   post "contact" => "contact#create", as: :create_contact
-  match 'heartbeat', to: proc { [200, {}, ''.chars] }
+  match 'heartbeat', to: proc { [200, {}, ''.chars] }, via: [:get, :post]
   root to: 'home#index'
 
   resources :sessions
