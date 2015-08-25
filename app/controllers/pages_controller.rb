@@ -5,6 +5,12 @@ class PagesController < ApplicationController
   expose(:pages)
   expose(:page, finder: :find_by_slug, finder_parameter: :slug)
 
+  def show
+    if page.is_a? NilClass
+      redirect_to "/404.html"
+    end
+  end
+
   def create
     @new_page = Page.new(page_params)
     if @new_page.save
