@@ -11,6 +11,7 @@ gem 'fog'
 gem 'formal'
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'newrelic_rpm'
 gem 'pg'
 gem 'rails', '4.0.3'
 gem 'rdiscount'
@@ -28,7 +29,7 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'thin'
+  gem 'puma'
 end
 
 group :development, :test do
