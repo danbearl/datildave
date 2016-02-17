@@ -76,5 +76,6 @@ Then /^I should see "(.*?)"$/ do |text|
 end
 
 Then /^I should not see "(.*?)"$/ do |text|
-  page.should have_no_content text
+  expect(page).to have_no_content(text)
+
 end
