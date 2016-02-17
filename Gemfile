@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.6'
+ruby '2.3.0'
 
 gem 'aws-s3'
 gem 'bcrypt-ruby', :require => 'bcrypt'
@@ -13,7 +13,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'newrelic_rpm'
 gem 'pg'
-gem 'rails', '4.0.3'
+gem 'rails', '4.2.5.1'
 gem 'rdiscount'
 gem 'rmagick', require: false
 gem 'stripe'
