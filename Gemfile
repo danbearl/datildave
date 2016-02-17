@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
 
-gem 'aws-s3'
+gem 'aws-sdk'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'buildybuild'
 gem 'carrierwave'
