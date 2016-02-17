@@ -8,7 +8,7 @@ class ContactController < ApplicationController
     @message = Message.new(params[:message])
 
     if @message.valid?
-      Contact.new_message(@message).deliver
+      Contact.new_message(@message).deliver_now
 
       redirect_to :root, notice: "Message successfully sent."
     else

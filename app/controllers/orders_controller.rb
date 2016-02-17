@@ -44,8 +44,8 @@ class OrdersController < ApplicationController
         product.update_attribute(:quantity, new_quantity)
       end
 
-      Contact.new_order_confirmation(@order).deliver
-      Contact.new_order(@order).deliver
+      Contact.new_order_confirmation(@order).deliver_now
+      Contact.new_order(@order).deliver_now
 
       session[:cart] = []
       redirect_to root_path, notice: "Thank you for your order!"
