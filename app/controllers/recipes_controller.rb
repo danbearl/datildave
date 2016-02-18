@@ -25,6 +25,11 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    recipe.destroy
+    redirect_to recipes_path, notice: "Recipe successfully deleted."
+  end
+
   private
 
   def recipe_params

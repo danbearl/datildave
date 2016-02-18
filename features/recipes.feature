@@ -42,3 +42,20 @@ Feature: Recipes
     And I should see "1 lb"
     And I should see "fry in a medium pan until crispy"
       
+
+  Scenario: I delete an existing recipe
+    Given the following recipe:
+      | name         | sausage hash                             |
+      | description  | a delicious hash of sausage and potatoes |
+      | instructions | cook until done                          |
+    And the following ingredients:
+      | quantity | name    | preparation |
+      | 1 lb     | sausage | chopped     |
+      | 1 large  | potato  | shredded    |
+    And those ingredients belong to that recipe
+    And I am on that recipe's page
+    When I follow "Delete"
+    Then I should see "Recipe successfully deleted."
+    And I should see 0 recipes in the database
+    And I should see 0 ingredients in the database
+
