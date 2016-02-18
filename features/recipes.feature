@@ -22,6 +22,24 @@ Feature: Recipes
     And I should see 1 recipe in the database
     And I should see 1 ingredient in the database
 
+  Scenario: I can view an existing recipe
+    Given the following recipe:
+      | name         | sausage hash                             |
+      | description  | a delicious hash of sausage and potatoes |
+      | instructions | cook until done                          |
+    And the following ingredients:
+      | quantity | name    | preparation |
+      | 1 lb     | sausage | chopped     |
+      | 1 large  | potato  | shredded    |
+    And those ingredients belong to that recipe
+    And I am on the home page
+    When I follow "Recipes"
+    And I follow "sausage hash"
+    Then I should see "1 lb sausage chopped"
+    And I should see "1 large potato shredded"
+    And I should see "a delicious hash of sausage and potatoes"
+    And I should see "cook until done"
+
   Scenario: I edit an existing recipe
     Given the following recipe:
       | name         | sausage hash                             |

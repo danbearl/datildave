@@ -115,6 +115,8 @@
               -categories.each do |category|
                 %li
                   =link_to category.name, category
+              %li
+                =link_to "Recipes", recipes_path
 
     %div#main-container.container
       = yield
