@@ -1,0 +1,17 @@
+-if current_user
+  .user_nav
+    =link_to "Edit", edit_recipe_path(recipe.id)
+    |
+    =link_to "Delete", recipe_path(recipe.id), method: :delete
+
+%article
+  %h1= recipe.name
+
+  %p= recipe.description
+
+  %ul
+    -recipe.ingredients.each do |ingredient|
+      %li= "#{ingredient.quantity} #{ingredient.name} #{ingredient.preparation}"
+
+  :markdown
+    #{recipe.instructions}
