@@ -5,10 +5,10 @@ Feature: Pages
 			| email                 | dan@datildave.com |
 			| password              | pass              |
 			| password_confirmation | pass              |
-		And that user is logged in.
+		And that user is logged in
 
 	Scenario: Create New Page
-		Given I am on the home page.
+		Given I am on the home page
 		When I follow "New Page"
 		And I fill in the following:
 			| page_name | about                   |
@@ -21,7 +21,7 @@ Feature: Pages
 		Given the following page:
 			| name | about                   |
 			| body | This is the about page. |
-		And I am on that page.
+		And I am on that page
 		When I follow "Edit"
 		And I fill in the following:
 			| page_body | This is the updated about page. |
@@ -33,6 +33,6 @@ Feature: Pages
 		Given the following page:
 			| name | about                   |
 			| body | This is the about page. |
-		And I am on that page.
+		And I am on that page
 		When I follow "Delete"
 		Then I should see "Page successfully deleted."

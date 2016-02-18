@@ -1,6 +1,6 @@
 Feature: Contact
 	Scenario: Send Message
-		Given I am on the contact page.
+		Given I am on the contact page
 		When I fill in the following:
 			| message_name    | Dan                |
 			| message_email   | dan@datildave.com  |

@@ -5,11 +5,11 @@ Feature: Posts
 			| email                 | dan@datildave.com |
 			| password              | pass              |
 			| password_confirmation | pass              |
-		And that user is logged in.
+		And that user is logged in
 		And the following post:
 			| title | First Post              |
 			| body  | This is the first post. |
-		And I am on the posts index page.
+		And I am on the posts index page
 
 	Scenario: Create new post
 		When I follow "New Post"

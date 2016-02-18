@@ -2,7 +2,7 @@ Feature: Categories
   Scenario: Categories populate the main navigation bar
     Given the following category:
       | name | meats |
-    And I am on the home page.
+    And I am on the home page
     Then I should see "meats"
 
   Scenario: A validated user creates a new category
@@ -11,8 +11,8 @@ Feature: Categories
       | email                 | dan@example.com |
       | password              | pass            |
       | password_confirmation | pass            |
-    And that user is logged in.
-    And I am on the home page.
+    And that user is logged in
+    And I am on the home page
     When I follow "New Category"
     And I fill in the following:
       | category_name | meats |
@@ -25,10 +25,10 @@ Feature: Categories
       | email                 | dan@example.com |
       | password              | pass            |
       | password_confirmation | pass            |
-    And that user is logged in.
+    And that user is logged in
     And the following category:
       | name | meats |
-    And I am on that category's page.
+    And I am on that category's page
     When I follow "Edit Category"
     And I fill in the following:
       | category_name | sausages |
@@ -41,9 +41,9 @@ Feature: Categories
       | email                 | dan@example.com |
       | password              | pass            |
       | password_confirmation | pass            |
-    And that user is logged in.
+    And that user is logged in
     And the following category:
       | name | meats |
-    And I am on that category's page.
+    And I am on that category's page
     When I follow "Delete Category"
     Then I should not see "meats"

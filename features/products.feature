@@ -5,10 +5,10 @@ Feature: Products
 		  | email                 | dan@dadtildave.com |
 		  | password              | pass               |
 			| password_confirmation | pass               |
-		And that user is logged in.
+		And that user is logged in
 
 	Scenario: create new product
-		Given I am on the home page.
+		Given I am on the home page
 		When I follow "New Product"
 		And I fill in the following:
 			| product_name        | sausage                  |
@@ -23,7 +23,7 @@ Feature: Products
 		Given the following product:
 			| name  | sausage |
 			| price | 1.2     |
-		And I am on that product's page.
+		And I am on that product's page
 		When I follow "Edit"
 		And I fill in the following:
 			| product_price | 2 |
@@ -36,7 +36,7 @@ Feature: Products
 		Given the following product:
 			| name  | sausage |
 			| price | 1.2     |
-		And I am on that product's page.
+		And I am on that product's page
 		When I follow "Delete"
 		Then I should see "Product successfully deleted."
 		And I should see "Products"
