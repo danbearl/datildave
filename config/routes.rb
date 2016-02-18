@@ -1,5 +1,9 @@
 Datildave::Application.routes.draw do
   
+  get 'recipes/new'
+
+  get 'recipes/edit'
+
   post "product/add_to_cart" => "products#add_to_cart"
   post "cart/empty_cart" => "cart#empty_cart"
   post "order/payment" => "orders#payment"
@@ -18,6 +22,9 @@ Datildave::Application.routes.draw do
   resources :posts
   resources :orders
   resources :categories
+  resources :recipes do
+    resources :ingredients
+  end
 
   #keep these at the bottom of your file. They should be the last routes.
   get "/:slug", to: "pages#show", as: :slug

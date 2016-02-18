@@ -11,60 +11,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107223040) do
+ActiveRecord::Schema.define(version: 20160217113658) do
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
-    t.string   "image"
+    t.string   "image",       limit: 255
     t.integer  "priority"
   end
 
-  create_table "orders", force: true do |t|
+  create_table "ingredients", force: :cascade do |t|
+    t.string   "quantity"
+    t.string   "name"
+    t.string   "preparation"
+    t.integer  "recipe_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
     t.text     "products"
-    t.string   "customer_email"
-    t.string   "subtotal"
-    t.string   "shipping"
+    t.string   "customer_email",       limit: 255
+    t.string   "subtotal",             limit: 255
+    t.string   "shipping",             limit: 255
     t.boolean  "shipped"
     t.text     "notes"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "address_street_1"
-    t.string   "address_street_2"
-    t.string   "address_city"
-    t.string   "address_state"
-    t.string   "address_zip"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "address_street_1",     limit: 255
+    t.string   "address_street_2",     limit: 255
+    t.string   "address_city",         limit: 255
+    t.string   "address_state",        limit: 255
+    t.string   "address_zip",          limit: 255
     t.boolean  "processed"
-    t.string   "customer_first_name"
-    t.string   "customer_last_name"
-    t.string   "stripe_payment_token"
+    t.string   "customer_first_name",  limit: 255
+    t.string   "customer_last_name",   limit: 255
+    t.string   "stripe_payment_token", limit: 255
   end
 
-  create_table "pages", force: true do |t|
-    t.string   "name"
-    t.string   "slug"
+  create_table "pages", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "slug",       limit: 255
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "posts", force: true do |t|
-    t.string   "title"
+  create_table "posts", force: :cascade do |t|
+    t.string   "title",      limit: 255
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "products", force: true do |t|
-    t.string   "name"
-    t.integer  "quantity",       default: 0
+  create_table "products", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.integer  "quantity",                   default: 0
     t.float    "price"
     t.text     "description"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "image"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "image",          limit: 255
     t.integer  "category_id"
     t.integer  "priority"
     t.boolean  "featured"
@@ -72,13 +81,21 @@ ActiveRecord::Schema.define(version: 20150107223040) do
     t.boolean  "frozen_product"
   end
 
-  create_table "users", force: true do |t|
+  create_table "recipes", force: :cascade do |t|
     t.string   "name"
-    t.string   "email"
-    t.string   "password_hash"
-    t.string   "password_salt"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.text     "description"
+    t.text     "instructions"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "email",         limit: 255
+    t.string   "password_hash", limit: 255
+    t.string   "password_salt", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
 end
