@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217113658) do
+ActiveRecord::Schema.define(version: 20160901010745) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
-    t.string   "image",       limit: 255
+    t.string   "image"
     t.integer  "priority"
   end
 
@@ -33,47 +33,48 @@ ActiveRecord::Schema.define(version: 20160217113658) do
 
   create_table "orders", force: :cascade do |t|
     t.text     "products"
-    t.string   "customer_email",       limit: 255
-    t.string   "subtotal",             limit: 255
-    t.string   "shipping",             limit: 255
+    t.string   "customer_email"
+    t.string   "subtotal"
+    t.string   "shipping"
     t.boolean  "shipped"
     t.text     "notes"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.string   "address_street_1",     limit: 255
-    t.string   "address_street_2",     limit: 255
-    t.string   "address_city",         limit: 255
-    t.string   "address_state",        limit: 255
-    t.string   "address_zip",          limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address_street_1"
+    t.string   "address_street_2"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_zip"
     t.boolean  "processed"
-    t.string   "customer_first_name",  limit: 255
-    t.string   "customer_last_name",   limit: 255
-    t.string   "stripe_payment_token", limit: 255
+    t.string   "customer_first_name"
+    t.string   "customer_last_name"
+    t.string   "stripe_payment_token"
   end
 
   create_table "pages", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "slug",       limit: 255
+    t.string   "name"
+    t.string   "slug"
     t.text     "body"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "featured"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",      limit: 255
+    t.string   "title"
     t.text     "body"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.integer  "quantity",                   default: 0
+    t.string   "name"
+    t.integer  "quantity",       default: 0
     t.float    "price"
     t.text     "description"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "image",          limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
     t.integer  "category_id"
     t.integer  "priority"
     t.boolean  "featured"
@@ -90,12 +91,12 @@ ActiveRecord::Schema.define(version: 20160217113658) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "email",         limit: 255
-    t.string   "password_hash", limit: 255
-    t.string   "password_salt", limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

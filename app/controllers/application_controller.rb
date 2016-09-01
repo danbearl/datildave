@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   expose(:page_slugs ) { Page.select(:slug).map(&:slug) }
   expose(:categories) { Category.all.order(:priority) }
   expose(:featured_products) { Product.where('featured = ?', true) }
+  expose(:featured_pages) {Page.where('featured = ?', true) }
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

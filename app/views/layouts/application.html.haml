@@ -100,6 +100,8 @@
               %li
                 =link_to "Log Out", "/log_out"
               %li
+                =link_to "Pages", pages_path
+              %li
                 =link_to "New Page", new_page_path
               %li
                 =link_to "New Recipe", new_recipe_path
@@ -117,6 +119,8 @@
                   =link_to category.name, category
               %li
                 =link_to "Recipes", recipes_path
+              -featured_pages.each do |page|
+                %li= link_to page.name, slug_path(page.slug)
 
     %div#main-container.container
       = yield

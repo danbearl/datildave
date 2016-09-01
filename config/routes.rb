@@ -18,7 +18,7 @@ Datildave::Application.routes.draw do
   resources :sessions
   resources :users
   resources :products
-  resources :pages, only: [:new, :create]
+  resources :pages, only: [:new, :create, :index]
   resources :posts
   resources :orders
   resources :categories
