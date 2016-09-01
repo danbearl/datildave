@@ -1,0 +1,11 @@
+%table
+  %tr
+    %th Name
+    %th
+  -pages.each do |page|
+    %tr
+      %td=page.name
+      %td
+        = link_to "Edit", edit_slug_path(page.slug)
+        |
+        = link_to "Destroy", destroy_slug_path(page.slug), notice: "Are you sure?"
