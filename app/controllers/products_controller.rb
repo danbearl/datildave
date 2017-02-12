@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
 
     if params[:quantity].to_i > product.quantity || params[:quantity].to_i <= 0
       redirect_to product, notice: "Insufficient quantity in stock!"
-    elsif params[:quantity].to_i < product.minimum_order
+    elsif product.minimum_order != nil and params[:quantity].to_i < product.minimum_order
       redirect_to product, notice: "The minimum order for this product is #{product.minimum_order}"
     else
       cart = {
